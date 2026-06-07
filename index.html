@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta de Servicios Consultoría - Michel Valencia</title>
+    <style>
+        /* Variables de Diseño Contemporáneo */
+        :root {
+            --primary: #0f2537;
+            --secondary: #1a56db;
+            --accent: #3b82f6;
+            --bg-light: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --success-bg: #f0fdf4;
+            --success-text: #16a34a;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Menú de Navegación Fijo (Estilo Panel/Scribe) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(15, 37, 55, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 13pt;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #94a3b8;
+            border: none;
+            padding: 8px 14px;
+            font-size: 9.5pt;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Contenedor Principal (Landing Page) */
+        .main-content {
+            max-width: 1000px;
+            margin: 90px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero / Portada de la Landing */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 60px 50px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(15, 37, 55, 0.15);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            font-size: 9pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .hero-section h1 {
+            font-size: 32pt;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 16pt;
+            color: #93c5fd;
+            margin: 0 0 15px 0;
+            font-weight: 300;
+        }
+
+        .hero-desc {
+            font-size: 11pt;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Tarjetas de Sección General */
+        .panel-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 45px 50px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+        }
+
+        h2 {
+            font-size: 15pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 22px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+        }
+
+        p {
+            color: var(--text-main);
+            font-size: 11pt;
+            margin: 0 0 20px 0;
+            text-align: justify;
+        }
+
+        /* Sección Objetivo */
+        .objective-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 25px;
+            border-radius: 6px;
+        }
+
+        .objective-box p {
+            font-size: 12pt;
+            color: #1e293b;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Retainer de Dos Columnas */
+        .grid-two-cols {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .retainer-main-card {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(15, 37, 55, 0.1);
+        }
+
+        .retainer-main-card h3 {
+            color: #ffffff;
+            margin: 0 0 10px 0;
+            font-size: 14pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-badge {
+            font-size: 28pt;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+
+        .price-badge span {
+            font-size: 12pt;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 12px;
+            font-size: 10.5pt;
+            color: #e2e8f0;
+        }
+
+        .custom-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        .hours-side-card {
+            background-color: var(--bg-light);
+            border: 1px solid #cbd5e1;
+            padding: 35px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hours-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .hours-price {
+            font-size: 22pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .hours-price span {
+            font-size: 11pt;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Grilla Fuera de Alcance */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .scope-item {
+            background-color: var(--bg-light);
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .scope-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 6px;
+            font-size: 11pt;
+        }
+
+        .scope-desc {
+            font-size: 10pt;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Clasificación de Proyectos */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #94a3b8;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+
+        .project-card.featured {
+            border-top-color: var(--secondary);
+            background-color: #fafcfb;
+        }
+
+        .project-header-title {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: var(--primary);
+        }
+
+        .project-cost {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .sub-header {
+            font-size: 9pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 15px 0 8px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .dark-list li {
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+
+        .dark-list li::before {
+            color: var(--secondary);
+        }
+
+        /* Valor Agregado */
+        .value-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .value-item {
+            padding: 20px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .value-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 11pt;
+            margin-bottom: 6px;
+        }
+
+        .value-desc {
+            font-size: 10pt;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* Caso de Éxito */
+        .case-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .case-header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 20px 30px;
+        }
+
+        .case-header h3 {
+            margin: 0;
+            font-size: 13pt;
+            font-weight: 600;
+        }
+
+        .case-body {
+            padding: 30px;
+            background-color: #ffffff;
+        }
+
+        .badge-container {
+            margin-bottom: 20px;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: var(--primary);
+            font-size: 8.5pt;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        /* Nuevo Bloque de Operación y Comunicación Modificado */
+        .operation-box {
+            background-color: var(--success-bg);
+            border-left: 4px solid var(--success-text);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .operation-box p {
+            margin-0 0 15px 0;
+            font-size: 11pt;
+            color: #14532d;
+            text-align: justify;
+        }
+
+        .operation-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer-text {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 9pt;
+            margin-top: 40px;
+        }
+
+        /* Responsividad Básica */
+        @media (max-width: 768px) {
+            .grid-two-cols, .scope-grid, .project-grid, .value-list {
+                grid-template-columns: 1fr;
+            }
+            .nav-menu {
+                display: none; /* Simplificado para móviles */
+            }
+            .panel-card {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN INTERACTIVO -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">MVALENCIA // CONSULTORÍA</div>
+            <div class="nav-menu">
+                <a class="nav-btn" href="#objetivo">Objetivo</a>
+                <a class="nav-btn" href="#mensual">Mensual</a>
+                <a class="nav-btn" href="#proyectos">Proyectos</a>
+                <a class="nav-btn" href="#valor">Valor Agregado</a>
+                <a class="nav-btn" href="#esquema">Operación</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO DE LA LANDING PAGE -->
+    <div class="main-content">
+
+        <!-- PORTADA / HERO -->
+        <header class="hero-section">
+            <span class="hero-badge">Propuesta de Alianza Estratégica</span>
+            <h1>Michel Valencia</h1>
+            <div class="hero-subtitle">Consultoría Tecnológica y Optimización de Procesos</div>
+            <p class="hero-desc">Ecosistema modular de soporte, mejora continua y arquitectura de automatizaciones ágiles.</p>
+        </header>
+
+        <!-- SECCIÓN 1: OBJETIVO -->
+        <section id="objetivo" class="panel-card">
+            <h2>1. Objetivo Estratégico</h2>
+            <div class="objective-box">
+                <p>Garantizar la continuidad operativa, robustecer la arquitectura actual de sistemas y catalizar la evolución digital de la organización mediante soluciones tecnológicas a la medida, capitalizando el conocimiento profundo de sus reglas de negocio y flujos vigentes.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: ESQUEMA MENSUAL -->
+        <section id="mensual" class="panel-card">
+            <h2>2. Acompañamiento Mensual (Retainer)</h2>
+            <p>Esquema enfocado en certidumbre técnica, mitigación de incidencias y ajustes continuos sobre plataformas existentes.</p>
+            
+            <div class="grid-two-cols">
+                <div class="retainer-main-card">
+                    <h3>Soporte Técnico Base</h3>
+                    <div class="price-badge">$8,000 <span>MXN / mes</span></div>
+                    <ul class="custom-list">
+                        <li>Hasta 10 horas mensuales de consultoría estratégica y desarrollo técnico.</li>
+                        <li>Atención ágil de incidencias y fallas operativas críticas.</li>
+                        <li>Optimización de flujos y reconfiguración de arquitecturas existentes.</li>
+                        <li>Consultas funcionales y soporte en la toma de decisiones tecnológicas.</li>
+                    </ul>
+                </div>
+                <div class="hours-side-card">
+                    <div class="hours-title">Horas Adicionales</div>
+                    <div class="hours-price">$1,000 <span>MXN <small style="font-size:10pt; color:var(--text-muted)">/ hr</small></span></div>
+                    <p style="font-size: 9.5pt; color: var(--text-muted); text-align: left; margin: 0;">
+                        Aplicable para requerimientos extraordinarios que excedan la cobertura mensual base, consolidándose y reportándose de forma transparente al corte del periodo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: SERVICIOS FUERA DE ALCANCE -->
+        <section class="panel-card">
+            <h2>3. Servicios Fuera de Alcance Estándar</h2>
+            <p>Iniciativas estructurales y de transformación digital profunda que se evalúan, cotizan y ejecutan de manera independiente al soporte mensual:</p>
+            
+            <div class="scope-grid">
+                <div class="scope-item">
+                    <div class="scope-title">Automatizaciones Complejas Nuevas</div>
+                    <p class="scope-desc">Diseño desde cero de flujos de trabajo multicanal con integraciones profundas.</p>
+                </div>
+                <div class="scope-item">
+                    <div class="scope-title">Implementaciones Globales</div>
+                    <p class="scope-desc">Adopción y despliegue integral de nuevos core-systems en la empresa.</p>
+                </div>
+                <div class="scope-item">
+                    <div class="scope-title">Integraciones de Sistemas vía API</div>
+                    <p class="scope-desc">Desarrollo de interconexiones robustas con plataformas o software de terceros.</p>
+                </div>
+                <div class="scope-item">
+                    <div class="scope-title">Mapeo de Procesos (As-Is / To-Be)</div>
+                    <p class="scope-desc">Consultoría de negocio dedicada para reestructuración de flujos departamentales.</p>
+                </div>
+                <div class="scope-item" style="grid-column: span 2;">
+                    <div class="scope-title">Dashboards Avanzados de BI</div>
+                    <p class="scope-desc">Modelado de datos avanzado y tableros analíticos complejos con cruce de múltiples fuentes de información.</p>
+                </div>
+            </div>
+            <span class="scope-footer-text">* Nota: Cada iniciativa bajo este rubro contará con una estimación previa de tiempos y entregables para su aprobación formal.</span>
+        </section>
+
+        <!-- SECCIÓN 4: PROYECTOS ADICIONALES -->
+        <section id="proyectos" class="panel-card">
+            <h2>4. Clasificación de Proyectos Adicionales</h2>
+            <p>Matriz de inversión rápida para la ejecución ágil de nuevos requerimientos según su nivel de complejidad técnica:</p>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header-title">Proyecto Pequeño</div>
+                    <div class="project-cost">$7,000 – $12,000 <span style="font-size:10pt; font-weight:400; color:var(--text-muted)">MXN</span></div>
+                    
+                    <div class="sub-header">Dinámica Técnica</div>
+                    <ul class="custom-list dark-list">
+                        <li>Focalizado en una plataforma única estándar.</li>
+                        <li>Automatizaciones lineales directas sin condicionales densas.</li>
+                        <li>Configuración y reportes nativos sin código complejo.</li>
+                    </ul>
+                    <div class="sub-header">Ejemplos</div>
+                    <p style="font-size:9.5pt; color:var(--text-muted); margin:0;">Dashboards sencillos, formularios parametrizados de captura o flujos automáticos de correos automatizados.</p>
+                </div>
+
+                <div class="project-card featured">
+                    <div class="project-header-title">Proyecto Mediano</div>
+                    <div class="project-cost">$13,000 – $20,000 <span style="font-size:10pt; font-weight:400; color:var(--text-muted)">MXN</span></div>
+                    
+                    <div class="sub-header">Dinámica Técnica</div>
+                    <ul class="custom-list dark-list">
+                        <li>Ecosistemas interconectados con múltiples herramientas.</li>
+                        <li>Lógica condicional dinámica basada en reglas de negocio avanzadas.</li>
+                        <li>Uso estratégico de webhooks, APIs y middlewares (n8n).</li>
+                    </ul>
+                    <div class="sub-header">Ejemplos</div>
+                    <p style="font-size:9.5pt; color:var(--text-muted); margin:0;">Integración documental con firmas electrónicas, flujos automatizados de aprobación administrativa profunda o ecosistemas de datos cruzados.</p>
+                </div>
+            </div>
+            <div class="note-box">
+                <strong>Alcance de Proyectos Avanzados:</strong> Aquellas iniciativas que por volumen arquitectónico o requerimientos masivos superen los límites de un proyecto mediano, serán analizadas detalladamente bajo un esquema de horas estimado según la complejidad técnica demandada.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: VALOR AGREGADO -->
+        <section id="valor" class="panel-card">
+            <h2>5. Valor Agregado Estratégico</h2>
+            <p>Beneficios de negocio inmediatos derivados de una sinergia técnica con un consultor alineado al ADN operativo de la compañía:</p>
+            
+            <div class="value-list">
+                <div class="value-item">
+                    <div class="value-title">Conocimiento Operativo Nativo</div>
+                    <p class="value-desc">Entendimiento absoluto de las reglas internas del negocio y los objetivos corporativos, lo que elimina meses de inducción técnica.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Arquitectura Técnica Conocida</div>
+                    <p class="value-desc">Dominio preciso del backend actual en SmartSuite y flujos en n8n, permitiendo diagnósticos inmediatos y evoluciones estables.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Curva de Aprendizaje Cero</div>
+                    <p class="value-desc">Capacidad de despliegue y solución de problemas con impacto positivo medible desde el primer día de activación.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Traducción Eficiente de Requerimientos</div>
+                    <p class="value-desc">Habilidad para transformar una necesidad operativa hablada en una solución de software optimizada, sin fricciones de comunicación.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: CASO DE ÉXITO -->
+        <section class="panel-card">
+            <h2>6. Caso de Éxito Consolidado</h2>
+            <div class="case-box">
+                <div class="case-header">
+                    <h3>Caso de Éxito: Ecosistema Digital KYC Automatizado</h3>
+                </div>
+                <div class="case-body">
+                    <p>Diseño e implementación de la plataforma centralizada para la captación, validación e integración automática de expedientes de clientes.</p>
+                    <div class="badge-container">
+                        <span class="tech-badge">SmartSuite Core</span>
+                        <span class="tech-badge">n8n Engine</span>
+                        <span class="tech-badge">Document Generation API</span>
+                        <span class="tech-badge">Firma Digital Estándar</span>
+                    </div>
+                    <ul class="custom-list dark-list" style="margin-top:15px;">
+                        <li><strong>Eficiencia Operativa:</strong> Erradicación total de procesos de captura manual repetitivos para el staff administrativo.</li>
+                        <li><strong>Trazabilidad Ejecutiva:</strong> Auditoría visual del estatus en tiempo real para líderes de área.</li>
+                        <li><strong>Garantía Documental:</strong> Mitigación de errores humanos mediante plantillas de contratos dinámicas y controladas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: ESQUEMA DE OPERACIÓN (MODIFICADO Y PULIDO) -->
+        <section id="esquema" class="panel-card" style="margin-bottom: 0;">
+            <h2>7. Modelo de Operación y Comunicación Ágil</h2>
+            <div class="operation-box">
+                <p>La colaboración se ejecuta bajo un **modelo de consultoría profesional independiente y 100% remoto**, estructurado específicamente para potenciar la agilidad operativa del negocio mediante entregas continuas y dinámicas de alto valor.</p>
+                <p>Para asegurar la máxima calidad técnica y una documentación transparente, la interacción se basará en un **esquema de comunicación asíncrona avanzada y células de contacto estratégico**. El desarrollo de requerimientos, levantamiento de necesidades, demostraciones avanzadas y fases de capacitación se gestionarán a través de **llamadas ejecutivas programadas, mensajes dinámicos de seguimiento y el uso prioritario de videos explicativos e interactivos**.</p>
+                <p>Este enfoque ágil optimiza los tiempos de respuesta y permite al negocio contar con un repositorio visual permanente de cada solución implementada, garantizando una atención especializada y robusta que acompaña el ritmo y crecimiento de la organización de forma eficiente.</p>
+            </div>
+        </section>
+
+        <footer class="footer-text">
+            Michel Valencia &copy; 2026 &bull; Propuesta de Servicios Profesionales Independientes
+        </footer>
+
+    </div>
+
+</body>
+</html>
